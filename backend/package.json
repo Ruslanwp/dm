@@ -1,0 +1,6 @@
+{
+    "name": "@app/backend",
+    "dependencies": {
+        "@app/shared": "file:../shared"
+    }
+}
