@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-      "target": "es5",
+      "target": "es6",
       "lib": [
         "esnext"
       ],
@@ -16,6 +16,10 @@
       "resolveJsonModule": true,
       "isolatedModules": true,
       "noEmit": true,
+      "strictNullChecks": true,
     },
+    "include": [
+      "src"
+    ]
   }
   
