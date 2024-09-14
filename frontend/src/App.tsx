@@ -25,7 +25,7 @@ export default function App() {
 }
 
 const Component = () => {
-  const {data, isLoading} = trpc.getDeviceByName.useQuery("1")
+  const {data, isLoading} = trpc.getDevices.useQuery()
 
   if(isLoading)return <div>loading</div>
 

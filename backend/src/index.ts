@@ -1,20 +1,19 @@
-import { initTRPC } from '@trpc/server';
 import * as trpcExpress from '@trpc/server/adapters/express';
 import express from 'express';
-import { appRouter } from './server';
+import { appRouter } from './router';
 import cors from 'cors';
+import { createContext } from './trpc';
+import { initEnvConfig } from './utils/env-config';
 
-// created for each request
-const createContext = ({
-  req,
-  res,
-}: trpcExpress.CreateExpressContextOptions) => ({}); // no context
-type Context = Awaited<ReturnType<typeof createContext>>;
+initEnvConfig();
 
-const t = initTRPC.context<Context>().create();
 const app = express();
 
-app.use(cors())
+const isDev = process.env.NODE_ENV === 'development';
+
+if (isDev) {
+  app.use(cors())
+}
 
 app.use(
   '/trpc',

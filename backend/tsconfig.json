@@ -1,6 +1,6 @@
 {
     "extends": "../tsconfig.json",
-    "include": ["src/**/*.ts", "src/db.ts"],
+    "include": ["src/**/*.ts", "src/database/devices.ts", "drizzle.config.ts"],
     "compilerOptions": {
         "module": "Node16",
         "moduleResolution": "node16",
