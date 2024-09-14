@@ -13,7 +13,7 @@
         "typescript": "^4.9.5"
     },
     "scripts": {
-        "dev": "nodemon src/index.ts",
+        "dev": "nodemon src/index.ts -w src -w ../shared",
         "db:studio": "drizzle-kit studio",
         "db:generate": "drizzle-kit generate",
         "db:migrate": "drizzle-kit migrate",
