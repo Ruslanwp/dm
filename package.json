@@ -7,8 +7,7 @@
         "zod": "^3.23.8"
     },
     "scripts": {
-        "start:frontend": "npm start -w frontend start",
-        "start": "concurrently 'npm start -w frontend' 'npm run start -w backend'"
+        "start:dev": "concurrently 'npm run dev -w frontend' 'npm run dev -w backend'"
     },
     "workspaces": [
         "frontend",
