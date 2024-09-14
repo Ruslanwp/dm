@@ -1,7 +1,7 @@
 import { db } from "../database/connection";
 import { devicesTable } from "@app/shared/schema";
 import { like, eq } from 'drizzle-orm';
-import { Device } from '@app/shared/models/devices';
+import { Device, DeviceMutationRequest } from '@app/shared/models/devices';
 
 export const devices = {
   device: {
@@ -10,6 +10,7 @@ export const devices = {
         where: eq(devicesTable.id, id)
       }),
     findByName: async (input: string) => db.select().from(devicesTable).where(like(devicesTable.deviceName, `%${input}%`)),
+    create: async (device: DeviceMutationRequest) => db.insert(devicesTable).values(device),
   },
   devices: {
     getAll: async () => db.select().from(devicesTable),
