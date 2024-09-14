@@ -3,7 +3,7 @@ import { neon } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-http';
 import {migrate} from 'drizzle-orm/neon-http/migrator';
 
-import * as schema from './schema'
+import * as schema from '@app/shared/schema'
 import { initEnvConfig } from '../utils/env-config';
 
 initEnvConfig()

@@ -5,7 +5,7 @@ import path from "path";
 initEnvConfig();
 
 export default defineConfig({
-  schema: path.join(__dirname,"src", "database", "schema.ts"),
+  schema: path.join(__dirname, "..", "shared", "schema.ts"),
   out: path.join(__dirname, "src", "database", "migrations"),
   dialect: 'postgresql',
   dbCredentials: {

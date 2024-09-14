@@ -1,12 +1,7 @@
-import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { db } from "../database/connection";
-import { devicesTable } from "../database/schema";
+import { devicesTable } from "@app/shared/schema";
 import { like, eq } from 'drizzle-orm';
-import z from "zod";
-
-const selectSchema = createSelectSchema(devicesTable)
-
-type Device = z.infer<typeof selectSchema>
+import { Device } from '@app/shared/models/devices';
 
 export const devices = {
   device: {

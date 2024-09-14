@@ -1,6 +1,6 @@
+import { Device } from '@app/shared/models/devices';
 import { List, Table, TableProps } from 'antd';
 import { FunctionComponent } from 'react';
-import { Device } from '@app/shared/devices/types';
 
 type DeviceListProps = {
     devices: Device[];

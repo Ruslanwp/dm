@@ -3,6 +3,7 @@ import { httpBatchLink } from '@trpc/client';
 import React, { useState } from 'react';
 import { trpc } from './utils/trpc';
 import { DeviceList } from './components/DeviceList';
+import { AddDevice } from './components/AddDevice';
 
 export default function App() {
   const [queryClient] = useState(() => new QueryClient());
@@ -19,18 +20,21 @@ export default function App() {
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
-        <Component />
+        <DeviceListPage />
       </QueryClientProvider>
     </trpc.Provider>
   );
 }
 
-const Component = () => {
+const DeviceListPage = () => {
   const {data, isLoading} = trpc.getDevices.useQuery()
 
   if(isLoading || data === undefined)return <div>loading</div>
 
   return (
+    <>
+    <AddDevice />
     <DeviceList devices={data} />
+    </>
   )
 }
