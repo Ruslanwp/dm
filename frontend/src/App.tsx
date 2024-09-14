@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { httpBatchLink } from '@trpc/client';
 import React, { useState } from 'react';
 import { trpc } from './utils/trpc';
+import { DeviceList } from './components/DeviceList';
 
 export default function App() {
   const [queryClient] = useState(() => new QueryClient());
@@ -27,9 +28,9 @@ export default function App() {
 const Component = () => {
   const {data, isLoading} = trpc.getDevices.useQuery()
 
-  if(isLoading)return <div>loading</div>
+  if(isLoading || data === undefined)return <div>loading</div>
 
-  return <div>
-    {JSON.stringify(data)}
-  </div>
+  return (
+    <DeviceList devices={data} />
+  )
 }
