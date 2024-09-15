@@ -14,7 +14,13 @@ export const devices = {
     update: async (device: DeviceMutationPatchRequest) => db.update(devicesTable).set(device).where(eq(devicesTable.id, device.id))
   },
   devices: {
-    getAll: async () => db.select().from(devicesTable),
+    getAllWithFilter: async (filter: string) => {
+      const query = db.select().from(devicesTable)
+      if (filter.trim().length > 0) {
+        return query.where(like(devicesTable.deviceName, `%${filter}%`))
+      }
+      return query
+    }
   }
 };
 

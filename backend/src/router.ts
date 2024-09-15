@@ -4,8 +4,8 @@ import { devices } from './model/devices';
 import { createSchema, editSchema } from '@app/shared/models/devices.model';
 
 export const appRouter = trpc.router({
-  getDevices: trpc.procedure.query(async () => {
-    return await devices.devices.getAll()
+  getDevicesWithFilter: trpc.procedure.input(z.string()).query(async (opts) => {
+    return await devices.devices.getAllWithFilter(opts.input)
   }),
   getDeviceByName: trpc.procedure
     .input(z.string().min(1))

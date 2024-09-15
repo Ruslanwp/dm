@@ -13,7 +13,7 @@ export const AddDevice: React.FC = () => {
 
   const handleMutation = trpc.createDevice.useMutation({
     onSuccess: () => {
-      trpcApi.getDevices.invalidate()
+      trpcApi.getDevicesWithFilter.invalidate()
       setOpen(false)
     }
   })
