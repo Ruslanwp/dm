@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { trpc } from './trpc' 
 import { devices } from './model/devices';
-import { createSchema } from '@app/shared/models/devices.model';
+import { createSchema, editSchema } from '@app/shared/models/devices.model';
 
 export const appRouter = trpc.router({
   getDevices: trpc.procedure.query(async () => {
@@ -17,6 +17,11 @@ export const appRouter = trpc.router({
     .mutation(async (opts) => {
     return await devices.device.create(opts.input);
   }),
+  editDevice: trpc.procedure
+    .input(editSchema)
+    .mutation(async (opts) => {
+      return await devices.device.update(opts.input);
+    }),
 });
 
 export type AppRouter = typeof appRouter;
