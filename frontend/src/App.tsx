@@ -43,6 +43,10 @@ const DeviceListPage = () => {
 
 type SearchProps = GetProps<typeof Input.Search>;
 
-const Search: React.FC<SearchProps> = ({ onSearch }) => {
-    return <Input.Search style={{ padding: '10px 0'}} placeholder="enter device name to search" onSearch={onSearch} enterButton />
+const inputStyle = {
+    padding: '10px 0'
+}
+
+export const Search: React.FC<SearchProps> = ({ onSearch }) => {
+    return <Input.Search style={inputStyle} placeholder="enter device name to search" onSearch={onSearch} enterButton />
 }
