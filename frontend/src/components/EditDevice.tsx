@@ -5,39 +5,50 @@ import {
 } from 'antd';
 import { trpc } from '../utils/trpc';
 import { DeviceForm, FormState } from './DeviceForm';
+import { Device } from '@app/shared/models/devices';
 
-export const AddDevice: React.FC = () => {
+type EditDeviceProps = {
+  device: Device
+}
+
+export const EditDevice: React.FC<EditDeviceProps> = ({
+    device
+}) => {
   const [open, setOpen] = React.useState<boolean>(false);
 
   const trpcApi = trpc.useUtils()
 
-  const handleMutation = trpc.createDevice.useMutation({
+  const handleMutation = trpc.editDevice.useMutation({
     onSuccess: () => {
       trpcApi.getDevices.invalidate()
       setOpen(false)
     }
   })
 
-  const onSave = async (device: FormState) => {
-    await handleMutation.mutateAsync(device)
+  const onSave = async (values: FormState) => {
+    await handleMutation.mutateAsync({
+      ...values,
+      id: device.id
+    })
   }
   
   return (
     <>
-      <Button type="primary" onClick={() => setOpen(true)} size='large'>
-        Add Device
+      <Button type="primary" onClick={() => setOpen(true)}>
+        Edit Device
       </Button>
       <Drawer
         closable
         destroyOnClose
-        title={<p>Add Device</p>}
+        title={<p>Edit Device</p>}
         placement="right"
         open={open}
         onClose={() => setOpen(false)}
         width={'90vw'}
       >
-        <DeviceForm onSave={onSave} isLoading={handleMutation.isLoading}/>
+        <DeviceForm initialFormState={device} onSave={onSave} isLoading={handleMutation.isLoading}/>
       </Drawer>
     </>
   );
 };
+
