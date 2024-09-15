@@ -5,6 +5,7 @@ import { EditDevice } from './EditDevice';
 
 type DeviceListProps = {
     devices: Device[];
+    isLoading: boolean;
 };
     const columns : TableProps<Device>['columns'] = [
         {
@@ -42,7 +43,8 @@ type DeviceListProps = {
     ]
 
 export const DeviceList: FunctionComponent<DeviceListProps> = ({
-    devices
+    devices,
+    isLoading
 }) => {
-    return <Table dataSource={devices} pagination={false} columns={columns} />
+    return <Table dataSource={devices} pagination={false} loading={isLoading} columns={columns} />
 }

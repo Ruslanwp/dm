@@ -20,7 +20,7 @@ export const EditDevice: React.FC<EditDeviceProps> = ({
 
   const handleMutation = trpc.editDevice.useMutation({
     onSuccess: () => {
-      trpcApi.getDevices.invalidate()
+      trpcApi.getDevicesWithFilter.invalidate()
       setOpen(false)
     }
   })
