@@ -6,11 +6,10 @@ import {
   Input,
   InputNumber,
   Select,
-  Drawer
 } from 'antd';
-import { Device } from '@app/shared/models/devices';
+import type { Device } from '@app/shared/models/devices';
 
-export type FormState = Omit<Device , 'id'>
+export type FormState = Omit<Device, 'id'>
 
 type DeviceFormProps = {
     onSave: (device: FormState) => void;
@@ -42,7 +41,7 @@ export const DeviceForm: React.FC<DeviceFormProps> = ({ onSave, isLoading, initi
             <InputNumber min={1} max={100} />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit" disabled={isLoading}>
+            <Button data-testid='Submit button' type="primary" htmlType="submit" disabled={isLoading}>
               Submit
             </Button>
           </Form.Item>
@@ -54,7 +53,7 @@ const makeInitialState = (initialState: Partial<Device> |  undefined): FormState
     return ({
     deviceName: initialState?.deviceName ?? '',
     batteryStatus: initialState?.batteryStatus ?? 100,
-    deviceType: initialState?.deviceType ?? deviceTypes.Tablet,
+    deviceType: initialState?.deviceType ?? 'Tablet',
     ownerName: initialState?.ownerName ?? ''
 })
 }
